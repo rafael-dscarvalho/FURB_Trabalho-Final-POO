@@ -26,21 +26,92 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JLblIncluirDespesa = new javax.swing.JLabel();
+        JLblValorDespesa = new javax.swing.JLabel();
+        JLblDataDespesa = new javax.swing.JLabel();
+        JLblCategoriaDespesa = new javax.swing.JLabel();
+        JBtnConfirmarDespesa = new javax.swing.JButton();
+        JTxtValorDespesa = new javax.swing.JTextField();
+        JTxtDataDespesa = new javax.swing.JTextField();
+        JCbCategoriaDespesa = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JLblIncluirDespesa.setText("INCLUIR DESPESA");
+
+        JLblValorDespesa.setText("Valor");
+
+        JLblDataDespesa.setText("Data");
+
+        JLblCategoriaDespesa.setText("Categoria");
+
+        JBtnConfirmarDespesa.setText("Confirmar");
+
+        JCbCategoriaDespesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentacao", "Transporte", "Residencia", "Saude", "Educacao", "Entretenimento", "Outras despesas" }));
+        JCbCategoriaDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCbCategoriaDespesaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(JLblIncluirDespesa))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(JLblValorDespesa)
+                                        .addGap(119, 119, 119)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JLblDataDespesa)
+                                    .addComponent(JTxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(177, 177, 177)
+                                .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JLblCategoriaDespesa)
+                            .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(JLblIncluirDespesa)
+                .addGap(93, 93, 93)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLblValorDespesa)
+                    .addComponent(JLblDataDespesa)
+                    .addComponent(JLblCategoriaDespesa))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JCbCategoriaDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCbCategoriaDespesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCbCategoriaDespesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +149,13 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnConfirmarDespesa;
+    private javax.swing.JComboBox<String> JCbCategoriaDespesa;
+    private javax.swing.JLabel JLblCategoriaDespesa;
+    private javax.swing.JLabel JLblDataDespesa;
+    private javax.swing.JLabel JLblIncluirDespesa;
+    private javax.swing.JLabel JLblValorDespesa;
+    private javax.swing.JTextField JTxtDataDespesa;
+    private javax.swing.JTextField JTxtValorDespesa;
     // End of variables declaration//GEN-END:variables
 }

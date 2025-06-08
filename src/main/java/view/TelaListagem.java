@@ -26,17 +26,52 @@ public class TelaListagem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JLblListagem = new javax.swing.JLabel();
+        JBtnListarReceitas = new javax.swing.JButton();
+        JBtnListarDespesas = new javax.swing.JButton();
+        JBtnListagemCompleta = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JLblListagem.setText("LISTAGEM");
+
+        JBtnListarReceitas.setText("Listar Receitas");
+
+        JBtnListarDespesas.setText("Listar Despesas");
+
+        JBtnListagemCompleta.setText("Listagem Completa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(JBtnListarReceitas)
+                        .addGap(113, 113, 113)
+                        .addComponent(JBtnListarDespesas))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(JLblListagem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(JBtnListagemCompleta)))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(JLblListagem)
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBtnListarReceitas)
+                    .addComponent(JBtnListarDespesas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(JBtnListagemCompleta)
+                .addGap(63, 63, 63))
         );
 
         pack();
@@ -78,5 +113,9 @@ public class TelaListagem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnListagemCompleta;
+    private javax.swing.JButton JBtnListarDespesas;
+    private javax.swing.JButton JBtnListarReceitas;
+    private javax.swing.JLabel JLblListagem;
     // End of variables declaration//GEN-END:variables
 }
