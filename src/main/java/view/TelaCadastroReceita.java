@@ -26,21 +26,113 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JlblIncluirReceita = new javax.swing.JLabel();
+        JlblValorReceita = new javax.swing.JLabel();
+        JtxtValorReceita = new javax.swing.JTextField();
+        JtxtDataReceita = new javax.swing.JTextField();
+        JlblDataReceita = new javax.swing.JLabel();
+        JlblCategoriaReceita = new javax.swing.JLabel();
+        JCbCategoriaReceita = new javax.swing.JComboBox<>();
+        JBtnConfirmarReceita = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JlblIncluirReceita.setText("INCLUIR RECEITA");
+
+        JlblValorReceita.setText("Valor");
+
+        JtxtValorReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtxtValorReceitaActionPerformed(evt);
+            }
+        });
+
+        JlblDataReceita.setText("Data");
+
+        JlblCategoriaReceita.setText("Categoria");
+
+        JCbCategoriaReceita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salario", "Decimo terceiro", "Ferias", "Outras receitas" }));
+        JCbCategoriaReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCbCategoriaReceitaActionPerformed(evt);
+            }
+        });
+
+        JBtnConfirmarReceita.setText("Confirmar");
+        JBtnConfirmarReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnConfirmarReceitaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(JlblIncluirReceita)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JtxtValorReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JlblValorReceita))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JlblDataReceita)
+                            .addComponent(JtxtDataReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JCbCategoriaReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JlblCategoriaReceita))
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(JBtnConfirmarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(JlblIncluirReceita)
+                        .addGap(69, 69, 69)
+                        .addComponent(JlblCategoriaReceita)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JCbCategoriaReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JlblValorReceita)
+                            .addComponent(JlblDataReceita))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JtxtValorReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtxtDataReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(JBtnConfirmarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JCbCategoriaReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCbCategoriaReceitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCbCategoriaReceitaActionPerformed
+
+    private void JBtnConfirmarReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConfirmarReceitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBtnConfirmarReceitaActionPerformed
+
+    private void JtxtValorReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtValorReceitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtxtValorReceitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +170,13 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBtnConfirmarReceita;
+    private javax.swing.JComboBox<String> JCbCategoriaReceita;
+    private javax.swing.JLabel JlblCategoriaReceita;
+    private javax.swing.JLabel JlblDataReceita;
+    private javax.swing.JLabel JlblIncluirReceita;
+    private javax.swing.JLabel JlblValorReceita;
+    private javax.swing.JTextField JtxtDataReceita;
+    private javax.swing.JTextField JtxtValorReceita;
     // End of variables declaration//GEN-END:variables
 }
