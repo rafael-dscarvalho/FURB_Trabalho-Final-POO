@@ -4,17 +4,21 @@
  */
 package view;
 
+import model.ControleFinanceiro;
+
 /**
  *
  * @author rafae
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+     private ControleFinanceiro controleFinanceiro;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        controleFinanceiro = new ControleFinanceiro();
     }
 
     /**
@@ -39,6 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JBtnAddDespesa.setText("Incluir Despesa");
 
         JbtnAddReceita.setText("Incluir Receita");
+        JbtnAddReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnAddReceitaActionPerformed(evt);
+            }
+        });
 
         JBtnConsultarSaldo.setText("Consultar Saldo");
 
@@ -82,6 +91,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JbtnAddReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnAddReceitaActionPerformed
+        TelaCadastroReceita telaReceita = new TelaCadastroReceita();
+        telaReceita.setVisible(true);
+    }//GEN-LAST:event_JbtnAddReceitaActionPerformed
 
     /**
      * @param args the command line arguments

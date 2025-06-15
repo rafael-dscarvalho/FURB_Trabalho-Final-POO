@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 
 public class Receita extends Lancamento {
@@ -13,7 +15,21 @@ public class Receita extends Lancamento {
     }
 
     @Override
+    public double getValorComSinal() {
+        return getValor(); 
+    }
+
+    @Override
     public boolean isReceita() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Receita{" +
+                "valor=" + getValor() +
+                ", data=" + getData() +
+                ", categoria=" + categoria +
+                '}';
     }
 }

@@ -1,8 +1,10 @@
+package model;
+
 import java.time.LocalDate;
 
 public abstract class Lancamento {
-    protected double valor;
-    protected LocalDate data;
+    private double valor;
+    private LocalDate data;
 
     public Lancamento(double valor, LocalDate data) {
         this.valor = valor;
@@ -17,5 +19,15 @@ public abstract class Lancamento {
         return data;
     }
 
+    public abstract double getValorComSinal();
+
     public abstract boolean isReceita();
+
+    @Override
+    public String toString() {
+        return "Lancamento{" +
+                "valor=" + valor +
+                ", data=" + data +
+                '}';
+    }
 }

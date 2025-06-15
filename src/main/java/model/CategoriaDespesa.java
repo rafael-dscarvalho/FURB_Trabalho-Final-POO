@@ -1,3 +1,5 @@
+package model;
+
 public enum CategoriaDespesa {
     ALIMENTACAO,
     TRANSPORTE,
@@ -5,5 +7,5 @@ public enum CategoriaDespesa {
     SAUDE,
     EDUCACAO,
     ENTRETENIMENTO,
-    OUTRAS;
+    OUTRAS
 }
