@@ -28,26 +28,19 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JLblConsultarSaldo = new javax.swing.JLabel();
+        panelConsultaSaldo = new javax.swing.JPanel();
         JBtnConsultarSaldo = new javax.swing.JButton();
-        jBtnSaldoVoltar = new javax.swing.JButton();
         JBtnConsultarSaldoGeral1 = new javax.swing.JButton();
+        jBtnSaldoVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JLblConsultarSaldo.setText("CONSULTAR SALDO");
+        panelConsultaSaldo.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Saldo"));
 
         JBtnConsultarSaldo.setText("Consultar data atual");
         JBtnConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBtnConsultarSaldoActionPerformed(evt);
-            }
-        });
-
-        jBtnSaldoVoltar.setText("Voltar");
-        jBtnSaldoVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnSaldoVoltarActionPerformed(evt);
             }
         });
 
@@ -58,37 +51,56 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
             }
         });
 
+        jBtnSaldoVoltar.setText("Voltar");
+        jBtnSaldoVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSaldoVoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelConsultaSaldoLayout = new javax.swing.GroupLayout(panelConsultaSaldo);
+        panelConsultaSaldo.setLayout(panelConsultaSaldoLayout);
+        panelConsultaSaldoLayout.setHorizontalGroup(
+            panelConsultaSaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultaSaldoLayout.createSequentialGroup()
+                .addGroup(panelConsultaSaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultaSaldoLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(panelConsultaSaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JBtnConsultarSaldoGeral1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBtnConsultarSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelConsultaSaldoLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jBtnSaldoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+        panelConsultaSaldoLayout.setVerticalGroup(
+            panelConsultaSaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultaSaldoLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(JBtnConsultarSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JBtnConsultarSaldoGeral1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jBtnSaldoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(JLblConsultarSaldo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JBtnConsultarSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jBtnSaldoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JBtnConsultarSaldoGeral1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(panelConsultaSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(JLblConsultarSaldo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(JBtnConsultarSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(JBtnConsultarSaldoGeral1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jBtnSaldoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelConsultaSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -102,7 +114,7 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
     private void jBtnSaldoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaldoVoltarActionPerformed
         TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
         telaPrincipal.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnSaldoVoltarActionPerformed
 
     private void JBtnConsultarSaldoGeral1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConsultarSaldoGeral1ActionPerformed
@@ -115,7 +127,7 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnConsultarSaldo;
     private javax.swing.JButton JBtnConsultarSaldoGeral1;
-    private javax.swing.JLabel JLblConsultarSaldo;
     private javax.swing.JButton jBtnSaldoVoltar;
+    private javax.swing.JPanel panelConsultaSaldo;
     // End of variables declaration//GEN-END:variables
 }
