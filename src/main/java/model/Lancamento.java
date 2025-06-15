@@ -17,7 +17,11 @@ public abstract class Lancamento {
      * @param data  data do lançamento
      */
     public Lancamento(double valor, LocalDate data) {
-        this.valor = valor;
+        if (valor >= 0) {
+            this.valor = valor;
+        } else {
+            throw new IllegalArgumentException("Valor não pode ser negativo.");
+        }
         this.data = data;
     }
     

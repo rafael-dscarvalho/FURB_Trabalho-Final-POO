@@ -16,14 +16,16 @@ import model.Despesa;
 public class TelaCadastroDespesa extends javax.swing.JFrame {
     
     private ControleFinanceiro controle;
+    private TelaPrincipal telaPrincipal;
 
     /**
      * Creates new form TelaCadastroDespesa
      */
-    public TelaCadastroDespesa(ControleFinanceiro controle) {
+    public TelaCadastroDespesa(ControleFinanceiro controle, TelaPrincipal telaPrincipal) {
         initComponents();
         setLocationRelativeTo(null);
         this.controle = controle;
+        this.telaPrincipal = telaPrincipal;
         
     try {
         MaskFormatter mf = new MaskFormatter("####-##-##");
@@ -45,37 +47,45 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JLblIncluirDespesa = new javax.swing.JLabel();
-        JLblValorDespesa = new javax.swing.JLabel();
-        JLblDataDespesa = new javax.swing.JLabel();
-        JLblCategoriaDespesa = new javax.swing.JLabel();
-        JBtnConfirmarDespesa = new javax.swing.JButton();
-        JTxtValorDespesa = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        JlblCategoriaDespesa = new javax.swing.JLabel();
+        JlblDataDespesa = new javax.swing.JLabel();
+        JlblValorDespesa = new javax.swing.JLabel();
         JCbCategoriaDespesa = new javax.swing.JComboBox<>();
-        jBtnDespesaVoltar = new javax.swing.JButton();
         jFtxtDataDespesa = new javax.swing.JFormattedTextField();
+        JTxtValorDespesa = new javax.swing.JTextField();
+        JBtnConfirmarDespesa = new javax.swing.JButton();
+        jBtnDespesaVoltar = new javax.swing.JButton();
+        JlblIncluirReceita = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        JLblIncluirDespesa.setText("INCLUIR DESPESA");
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        JLblValorDespesa.setText("Valor");
+        JlblCategoriaDespesa.setText("Categoria");
 
-        JLblDataDespesa.setText("Data");
+        JlblDataDespesa.setText("Data");
 
-        JLblCategoriaDespesa.setText("Categoria");
-
-        JBtnConfirmarDespesa.setText("Confirmar");
-        JBtnConfirmarDespesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBtnConfirmarDespesaActionPerformed(evt);
-            }
-        });
+        JlblValorDespesa.setText("Valor");
 
         JCbCategoriaDespesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentacao", "Transporte", "Residencia", "Saude", "Educacao", "Entretenimento", "Outras despesas" }));
         JCbCategoriaDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCbCategoriaDespesaActionPerformed(evt);
+            }
+        });
+
+        jFtxtDataDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFtxtDataDespesaActionPerformed(evt);
+            }
+        });
+
+        JBtnConfirmarDespesa.setText("Confirmar");
+        JBtnConfirmarDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnConfirmarDespesaActionPerformed(evt);
             }
         });
 
@@ -86,70 +96,73 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
             }
         });
 
-        jFtxtDataDespesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFtxtDataDespesaActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JlblCategoriaDespesa)
+                    .addComponent(JlblDataDespesa)
+                    .addComponent(JlblValorDespesa)
+                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFtxtDataDespesa)
+                    .addComponent(JTxtValorDespesa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(JBtnConfirmarDespesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JlblCategoriaDespesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JlblDataDespesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFtxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JlblValorDespesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        JlblIncluirReceita.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        JlblIncluirReceita.setText("Incluir Despesa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JLblValorDespesa)
-                        .addGap(119, 119, 119)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLblDataDespesa)
-                    .addComponent(jFtxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLblCategoriaDespesa)
-                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(JLblIncluirDespesa))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JlblIncluirReceita)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(JLblIncluirDespesa)
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JLblValorDespesa)
-                            .addComponent(JLblDataDespesa))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFtxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLblCategoriaDespesa)
-                        .addGap(7, 7, 7)
-                        .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JlblIncluirReceita)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,9 +173,9 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_JCbCategoriaDespesaActionPerformed
 
     private void jBtnDespesaVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDespesaVoltarActionPerformed
-        TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
+        this.setVisible(false);
         telaPrincipal.setVisible(true);
-        this.dispose();
+        telaPrincipal.disporDados();
     }//GEN-LAST:event_jBtnDespesaVoltarActionPerformed
 
     private void jFtxtDataDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFtxtDataDespesaActionPerformed
@@ -212,12 +225,13 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnConfirmarDespesa;
     private javax.swing.JComboBox<String> JCbCategoriaDespesa;
-    private javax.swing.JLabel JLblCategoriaDespesa;
-    private javax.swing.JLabel JLblDataDespesa;
-    private javax.swing.JLabel JLblIncluirDespesa;
-    private javax.swing.JLabel JLblValorDespesa;
     private javax.swing.JTextField JTxtValorDespesa;
+    private javax.swing.JLabel JlblCategoriaDespesa;
+    private javax.swing.JLabel JlblDataDespesa;
+    private javax.swing.JLabel JlblIncluirReceita;
+    private javax.swing.JLabel JlblValorDespesa;
     private javax.swing.JButton jBtnDespesaVoltar;
     private javax.swing.JFormattedTextField jFtxtDataDespesa;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
