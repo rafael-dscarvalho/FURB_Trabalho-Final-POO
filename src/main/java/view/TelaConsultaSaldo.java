@@ -37,7 +37,7 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
 
         JLblConsultarSaldo.setText("CONSULTAR SALDO");
 
-        JBtnConsultarSaldo.setText("Consultar data geral");
+        JBtnConsultarSaldo.setText("Consultar data atual");
         JBtnConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBtnConsultarSaldoActionPerformed(evt);
