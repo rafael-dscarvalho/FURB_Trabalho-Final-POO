@@ -1,9 +1,7 @@
 package model;
 
-import model.Lancamento;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -65,7 +63,7 @@ public class ControleFinanceiro {
 
         for (Lancamento lan : ordenados) {
             saldo += lan.getValorComSinal();
-            extrato.add(lan.toString() + " | Saldo até aqui: R$ " + saldo);
+            extrato.add(lan.toString() + " | Saldo: R$ " + saldo);
         }
 
         return extrato;
