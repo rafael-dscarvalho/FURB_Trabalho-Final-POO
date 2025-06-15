@@ -1,24 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import model.ControleFinanceiro;
+
 
 /**
  *
  * @author rafae
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
-     private ControleFinanceiro controleFinanceiro;
+    
+    private ControleFinanceiro controle;
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(ControleFinanceiro controle) {
         initComponents();
-        controleFinanceiro = new ControleFinanceiro();
+        setLocationRelativeTo(null);
+        this.controle = controle;
     }
 
     /**
@@ -41,6 +39,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JLblMenu.setText("MENU");
 
         JBtnAddDespesa.setText("Incluir Despesa");
+        JBtnAddDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnAddDespesaActionPerformed(evt);
+            }
+        });
 
         JbtnAddReceita.setText("Incluir Receita");
         JbtnAddReceita.addActionListener(new java.awt.event.ActionListener() {
@@ -50,8 +53,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         JBtnConsultarSaldo.setText("Consultar Saldo");
+        JBtnConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnConsultarSaldoActionPerformed(evt);
+            }
+        });
 
         JBtnListarLancamentos.setText("Listar Lançamentos");
+        JBtnListarLancamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnListarLancamentosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,9 +106,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtnAddReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnAddReceitaActionPerformed
-        TelaCadastroReceita telaReceita = new TelaCadastroReceita();
+        TelaCadastroReceita telaReceita = new TelaCadastroReceita(controle);
         telaReceita.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_JbtnAddReceitaActionPerformed
+
+    private void JBtnAddDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnAddDespesaActionPerformed
+        TelaCadastroDespesa telaDespesa = new TelaCadastroDespesa(controle);
+        telaDespesa.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_JBtnAddDespesaActionPerformed
+
+    private void JBtnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConsultarSaldoActionPerformed
+        TelaConsultaSaldo telaSaldo = new TelaConsultaSaldo(controle);
+        telaSaldo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_JBtnConsultarSaldoActionPerformed
+
+    private void JBtnListarLancamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListarLancamentosActionPerformed
+        TelaListagem telaListagem = new TelaListagem(controle);
+        telaListagem.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_JBtnListarLancamentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,11 +155,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        ControleFinanceiro controle = new ControleFinanceiro();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaPrincipal(controle).setVisible(true);
             }
         });
     }

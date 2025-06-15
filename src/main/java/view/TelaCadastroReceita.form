@@ -28,6 +28,13 @@
               <Component id="JlblIncluirReceita" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="JBtnConfirmarReceita1" min="-2" pref="106" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <Component id="jBtnReceitaVoltar" min="-2" pref="106" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -36,24 +43,15 @@
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JlblDataReceita" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtxtDataReceita" min="-2" pref="124" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="JCbCategoriaReceita" min="-2" pref="136" max="-2" attributes="0"/>
-                          <Component id="JlblCategoriaReceita" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="JBtnConfirmarReceita" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="JlblDataReceita" min="-2" max="-2" attributes="0"/>
+                  <Component id="jFtxtDataReceita" min="-2" pref="124" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="JCbCategoriaReceita" min="-2" pref="136" max="-2" attributes="0"/>
+                  <Component id="JlblCategoriaReceita" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,20 +69,23 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="JlblValorReceita" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="JlblDataReceita" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JlblDataReceita" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="JtxtValorReceita" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="JtxtDataReceita" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jFtxtDataReceita" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
-              <Component id="JBtnConfirmarReceita" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jBtnReceitaVoltar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="JBtnConfirmarReceita1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,8 +105,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtxtValorReceitaActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="JtxtDataReceita">
     </Component>
     <Component class="javax.swing.JLabel" name="JlblDataReceita">
       <Properties>
@@ -135,12 +134,25 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="JBtnConfirmarReceita">
+    <Component class="javax.swing.JButton" name="jBtnReceitaVoltar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Voltar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnReceitaVoltarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="JBtnConfirmarReceita1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBtnConfirmarReceitaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBtnConfirmarReceita1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFtxtDataReceita">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFtxtDataReceitaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

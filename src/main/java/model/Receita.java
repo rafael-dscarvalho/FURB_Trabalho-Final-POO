@@ -26,10 +26,11 @@ public class Receita extends Lancamento {
 
     @Override
     public String toString() {
-        return "Receita{" +
-                "valor=" + getValor() +
-                ", data=" + getData() +
-                ", categoria=" + categoria +
-                '}';
+        return String.format(
+            "Valor: R$ %.2f | Data: %s | Categoria: %s",
+            getValor(),
+            getData(),
+            categoria
+        );
     }
 }

@@ -26,10 +26,11 @@ public class Despesa extends Lancamento {
 
     @Override
     public String toString() {
-        return "Despesa{" +
-                "valor=" + getValor() +
-                ", data=" + getData() +
-                ", categoria=" + categoria +
-                '}';
-    }
+        return String.format(
+            "Valor: R$ %.2f | Data: %s | Categoria: %s",
+            getValor(),
+            getData(),
+            categoria
+        );
+}
 }
