@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 
 public class Despesa extends Lancamento {
@@ -13,7 +15,21 @@ public class Despesa extends Lancamento {
     }
 
     @Override
+    public double getValorComSinal() {
+        return -getValor();
+    }
+
+    @Override
     public boolean isReceita() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Despesa{" +
+                "valor=" + getValor() +
+                ", data=" + getData() +
+                ", categoria=" + categoria +
+                '}';
     }
 }

@@ -1,34 +1,34 @@
+package model;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Usuario usuario = new Usuario("João");
+    ControleFinanceiro controle = new ControleFinanceiro();
 
-        Receita receita1 = new Receita(1500.00, LocalDate.of(2023, 1, 15), CategoriaReceita.SALARIO);
-        Receita receita2 = new Receita(500.00, LocalDate.of(2023, 2, 10), CategoriaReceita.DECIMO_TERCEIRO);
+    controle.adicionarLancamento(new Receita(3000, LocalDate.of(2025, 6, 10), CategoriaReceita.SALARIO));
+    controle.adicionarLancamento(new Despesa(500, LocalDate.of(2025, 6, 12), CategoriaDespesa.ALIMENTACAO));
+    controle.adicionarLancamento(new Despesa(1000, LocalDate.of(2025, 6, 16), CategoriaDespesa.ALIMENTACAO));
+        controle.adicionarLancamento(new Receita(5, LocalDate.of(2025, 6, 17), CategoriaReceita.SALARIO));
 
-        Despesa despesa1 = new Despesa(200.00, LocalDate.of(2023, 1, 20), CategoriaDespesa.ALIMENTACAO);
-        Despesa despesa2 = new Despesa(300.00, LocalDate.of(2023, 2, 5), CategoriaDespesa.TRANSPORTE);
+    System.out.println("Saldo ate hoje: " + controle.calcularSaldoAteHoje(LocalDate.now()));
+    System.out.println("Saldo total: " + controle.calcularSaldoTotal());
 
-        usuario.adicionarLancamento(receita1);
-        usuario.adicionarLancamento(receita2);
+    List<String> extrato = controle.listarLancamentosOrdenados();
 
-        usuario.adicionarLancamento(despesa1);
-        usuario.adicionarLancamento(despesa2);
+    for (String linha : extrato) {
+        System.out.println(linha);
+    }
 
-        System.out.println("Receitas de " + usuario.getNome() + ":");
-        for (Receita receita : usuario.getReceitas()) {
-            System.out.println(" - " + receita.getValor() + " em " + receita.getData() + " (" + receita.getCategoria() + ")");
-        }
+    
+    for (Lancamento l : controle.listarReceitas()) {
+        System.out.println(l);
+    }
+    
+    for (Lancamento l : controle.listarDespesas()) {
+        System.out.println(l);
+    }
 
-        System.out.println("Despesas de " + usuario.getNome() + ":");
-        for (Despesa despesa : usuario.getDespesas()) {
-            System.out.println(" - " + despesa.getValor() + " em " + despesa.getData() + " (" + despesa.getCategoria() + ")");
-        }
-
-        LocalDate dataConsulta = LocalDate.of(2023, 2, 15);
-        double saldo = usuario.calcularSaldo(dataConsulta);
-
-        System.out.println("Saldo em " + dataConsulta + ": " + saldo);
     }
 }
