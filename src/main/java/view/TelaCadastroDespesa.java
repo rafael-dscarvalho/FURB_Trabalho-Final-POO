@@ -1,10 +1,14 @@
 package view;
 
+import java.text.NumberFormat;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.Year;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
 import model.CategoriaDespesa;
 import model.ControleFinanceiro;
 import model.Despesa;
@@ -14,7 +18,7 @@ import model.Despesa;
  * @author rafae
  */
 public class TelaCadastroDespesa extends javax.swing.JFrame {
-    
+
     private ControleFinanceiro controle;
     private TelaPrincipal telaPrincipal;
 
@@ -26,16 +30,32 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.controle = controle;
         this.telaPrincipal = telaPrincipal;
-        
-    try {
-        MaskFormatter mf = new MaskFormatter("####-##-##");
-        mf.setPlaceholderCharacter('_');  
-        jFtxtDataDespesa.setFormatterFactory(
-            new DefaultFormatterFactory(mf)
-        );
-    } catch (ParseException ex) {
-        ex.printStackTrace();
-    }
+
+        try {
+            MaskFormatter mf = new MaskFormatter("##/##/####");
+            mf.setPlaceholderCharacter('_');
+            jFtxtDataDespesa.setFormatterFactory(
+                    new DefaultFormatterFactory(mf)
+            );
+
+            JFTxtValorDespesa.setValue(0.00);
+
+            NumberFormat format = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            format.setMinimumFractionDigits(2);
+            format.setMaximumFractionDigits(2);
+            format.setGroupingUsed(true); // ativa o uso de milhar (ponto)
+
+            NumberFormatter formatter = new NumberFormatter(format);
+            formatter.setValueClass(Double.class);
+            formatter.setMinimum(0.0);
+            formatter.setAllowsInvalid(false); // não deixa digitar letras ou coisas erradas
+            formatter.setCommitsOnValidEdit(true); // aplica valor quando válido
+
+            JFTxtValorDespesa.setFormatterFactory(new DefaultFormatterFactory(formatter));
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -53,9 +73,9 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         JlblValorDespesa = new javax.swing.JLabel();
         JCbCategoriaDespesa = new javax.swing.JComboBox<>();
         jFtxtDataDespesa = new javax.swing.JFormattedTextField();
-        JTxtValorDespesa = new javax.swing.JTextField();
         JBtnConfirmarDespesa = new javax.swing.JButton();
         jBtnDespesaVoltar = new javax.swing.JButton();
+        JFTxtValorDespesa = new javax.swing.JFormattedTextField();
         JlblIncluirReceita = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,22 +120,22 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JlblCategoriaDespesa)
-                    .addComponent(JlblDataDespesa)
-                    .addComponent(JlblValorDespesa)
-                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFtxtDataDespesa)
-                    .addComponent(JTxtValorDespesa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(JBtnConfirmarDespesa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JlblCategoriaDespesa)
+                    .addComponent(JlblDataDespesa)
+                    .addComponent(JlblValorDespesa)
+                    .addComponent(JCbCategoriaDespesa, 0, 128, Short.MAX_VALUE)
+                    .addComponent(jFtxtDataDespesa)
+                    .addComponent(JFTxtValorDespesa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +151,7 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JlblValorDespesa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JFTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,25 +202,113 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFtxtDataDespesaActionPerformed
 
+    private boolean dataValida(int dia, int mes, int ano) {
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
+        if (dia < 1) {
+            return false;
+        }
+
+        int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int maxDia = diasNoMes[mes - 1];
+
+        // fevereiro e ano bissexto
+        if (mes == 2 && isAnoBissexto(ano)) {
+            maxDia = 29;
+        }
+
+        if (dia > maxDia) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isAnoBissexto(int ano) {
+        return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+    }
+
     private void JBtnConfirmarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConfirmarDespesaActionPerformed
         try {
-            double valor = Double.parseDouble(JTxtValorDespesa.getText());
-            LocalDate data = LocalDate.parse(jFtxtDataDespesa.getText());
+            // --- VALOR ---
+            String valorStr = JFTxtValorDespesa.getText().trim();
+            if (valorStr.isEmpty() || valorStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha o valor da despesa corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            Number parsed = nf.parse(valorStr);
+            double valor = parsed.doubleValue();
+
+            if (valor <= 0) {
+                JOptionPane.showMessageDialog(this, "Valor da despesa deve ser maior que zero.", "DESPESA NÃO CADASTRADA", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // --- DATA ---
+            String dataStr = jFtxtDataDespesa.getText().trim();
+            if (dataStr.isEmpty() || dataStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha a data corretamente (dd/MM/yyyy).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String[] partes = dataStr.split("/");
+            if (partes.length != 3) {
+                JOptionPane.showMessageDialog(this, "Data inválida. Use o formato dd/MM/yyyy.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int dia, mes, ano;
+            try {
+                dia = Integer.parseInt(partes[0]);
+                mes = Integer.parseInt(partes[1]);
+                ano = Integer.parseInt(partes[2]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Data contém valores não numéricos.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validação manual da data, incluindo ano bissexto
+            if (!dataValida(dia, mes, ano)) {
+                JOptionPane.showMessageDialog(this, "Data inválida ou impossível (verifique ano bissexto, mês e dia).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int anoAtual = Year.now().getValue();
+            if (ano < 1970 || ano > anoAtual) {
+                JOptionPane.showMessageDialog(this, "Ano da despesa deve ser entre 1970 e " + anoAtual + ".", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            LocalDate data = LocalDate.of(ano, mes, dia);
+
+            // --- CATEGORIA ---
             String selecionado = (String) JCbCategoriaDespesa.getSelectedItem();
+            if (selecionado == null) {
+                JOptionPane.showMessageDialog(this, "Selecione uma categoria.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             CategoriaDespesa categoria = parseCategoria(selecionado);
 
+            // --- ADICIONA ---
             Despesa despesa = new Despesa(valor, data, categoria);
             controle.adicionarLancamento(despesa);
-            JOptionPane.showMessageDialog(this, "Despesa cadastrada com sucesso!");
+            telaPrincipal.salvarSePossivel();
+            
+            JOptionPane.showMessageDialog(this, "Receita cadastrada com sucesso!");
+            
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar despesa: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar despesa: " + ex.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBtnConfirmarDespesaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
     private CategoriaDespesa parseCategoria(String selecionado) {
         switch (selecionado) {
             case "Alimentacao":
@@ -221,11 +329,11 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
                 throw new IllegalArgumentException("Categoria desconhecida: " + selecionado);
         }
     }
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnConfirmarDespesa;
     private javax.swing.JComboBox<String> JCbCategoriaDespesa;
-    private javax.swing.JTextField JTxtValorDespesa;
+    private javax.swing.JFormattedTextField JFTxtValorDespesa;
     private javax.swing.JLabel JlblCategoriaDespesa;
     private javax.swing.JLabel JlblDataDespesa;
     private javax.swing.JLabel JlblIncluirReceita;

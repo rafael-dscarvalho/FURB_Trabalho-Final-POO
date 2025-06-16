@@ -1,10 +1,14 @@
 package view;
 
+import java.text.NumberFormat;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.DefaultFormatterFactory;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.Year;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
 import model.CategoriaReceita;
 import model.ControleFinanceiro;
 import model.Receita;
@@ -17,6 +21,7 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
 
     private ControleFinanceiro controle;
     private TelaPrincipal telaPrincipal;
+
     /**
      * Creates new form TelaCadastroReceita
      */
@@ -25,16 +30,32 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.controle = controle;
         this.telaPrincipal = telaPrincipal;
-        
-    try {
-        MaskFormatter mf = new MaskFormatter("####-##-##");
-        mf.setPlaceholderCharacter('_');  
-        jFtxtDataReceita.setFormatterFactory(
-            new DefaultFormatterFactory(mf)
-        );
-    } catch (ParseException ex) {
-        ex.printStackTrace();
-    }
+
+        try {
+            MaskFormatter mf = new MaskFormatter("##/##/####");
+            mf.setPlaceholderCharacter('_');
+            jFtxtDataReceita.setFormatterFactory(
+                    new DefaultFormatterFactory(mf)
+            );
+
+            JFtxtValorReceita.setValue(0.00);
+
+            NumberFormat format = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            format.setMinimumFractionDigits(2);
+            format.setMaximumFractionDigits(2);
+            format.setGroupingUsed(true); // ativa o uso de milhar (ponto)
+
+            NumberFormatter formatter = new NumberFormatter(format);
+            formatter.setValueClass(Double.class);
+            formatter.setMinimum(0.0);
+            formatter.setAllowsInvalid(false); // não deixa digitar letras ou coisas erradas
+            formatter.setCommitsOnValidEdit(true); // aplica valor quando válido
+
+            JFtxtValorReceita.setFormatterFactory(new DefaultFormatterFactory(formatter));
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -53,9 +74,9 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
         labelDataReceita = new javax.swing.JLabel();
         jFtxtDataReceita = new javax.swing.JFormattedTextField();
         labelValorReceita = new javax.swing.JLabel();
-        JtxtValorReceita = new javax.swing.JTextField();
         JBtnConfirmarReceita = new javax.swing.JButton();
         jBtnReceitaVoltar = new javax.swing.JButton();
+        JFtxtValorReceita = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,12 +105,6 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
 
         labelValorReceita.setText("Valor");
 
-        JtxtValorReceita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JtxtValorReceitaActionPerformed(evt);
-            }
-        });
-
         JBtnConfirmarReceita.setText("Confirmar");
         JBtnConfirmarReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +119,13 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
             }
         });
 
+        JFtxtValorReceita.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.00"))));
+        JFtxtValorReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFtxtValorReceitaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelIncluirReceitaLayout = new javax.swing.GroupLayout(panelIncluirReceita);
         panelIncluirReceita.setLayout(panelIncluirReceitaLayout);
         panelIncluirReceitaLayout.setHorizontalGroup(
@@ -111,19 +133,19 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
             .addGroup(panelIncluirReceitaLayout.createSequentialGroup()
                 .addGroup(panelIncluirReceitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIncluirReceitaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(JBtnConfirmarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnReceitaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelIncluirReceitaLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelIncluirReceitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JtxtValorReceita)
+                            .addComponent(JFtxtValorReceita, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelCategoriaReceita, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JCbCategoriaReceita, javax.swing.GroupLayout.Alignment.LEADING, 0, 136, Short.MAX_VALUE)
                             .addComponent(labelDataReceita, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelValorReceita, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFtxtDataReceita, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(panelIncluirReceitaLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(JBtnConfirmarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnReceitaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFtxtDataReceita, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         panelIncluirReceitaLayout.setVerticalGroup(
@@ -140,7 +162,7 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelValorReceita)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtxtValorReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JFtxtValorReceita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelIncluirReceitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBtnConfirmarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,22 +207,106 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
         telaPrincipal.disporDados();
     }//GEN-LAST:event_jBtnReceitaVoltarActionPerformed
 
-    private void JtxtValorReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtxtValorReceitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JtxtValorReceitaActionPerformed
+    private boolean dataValida(int dia, int mes, int ano) {
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
+        if (dia < 1) {
+            return false;
+        }
 
+        int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int maxDia = diasNoMes[mes - 1];
+
+        // fevereiro e ano bissexto
+        if (mes == 2 && isAnoBissexto(ano)) {
+            maxDia = 29;
+        }
+
+        if (dia > maxDia) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isAnoBissexto(int ano) {
+        return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+    }
+    
     private void JBtnConfirmarReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConfirmarReceitaActionPerformed
         try {
-            double valor = Double.parseDouble(JtxtValorReceita.getText());
-            LocalDate data = LocalDate.parse(jFtxtDataReceita.getText());
+            // --- VALOR ---
+            String valorStr = JFtxtValorReceita.getText().trim();
+            if (valorStr.isEmpty() || valorStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha o valor da receita corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            Number parsed = nf.parse(valorStr);
+            double valor = parsed.doubleValue();
+
+            if (valor <= 0) {
+                JOptionPane.showMessageDialog(this, "Valor da receita deve ser maior que zero.", "RECEITA NÃO CADASTRADA", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // --- DATA ---
+            String dataStr = jFtxtDataReceita.getText().trim();
+            if (dataStr.isEmpty() || dataStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha a data corretamente (dd/MM/yyyy).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String[] partes = dataStr.split("/");
+            if (partes.length != 3) {
+                JOptionPane.showMessageDialog(this, "Data inválida. Use o formato dd/MM/yyyy.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int dia, mes, ano;
+            try {
+                dia = Integer.parseInt(partes[0]);
+                mes = Integer.parseInt(partes[1]);
+                ano = Integer.parseInt(partes[2]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Data contém valores não numéricos.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validação manual da data, incluindo ano bissexto
+            if (!dataValida(dia, mes, ano)) {
+                JOptionPane.showMessageDialog(this, "Data inválida ou impossível (verifique ano bissexto, mês e dia).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int anoAtual = Year.now().getValue();
+            if (ano < 1970 || ano > anoAtual) {
+                JOptionPane.showMessageDialog(this, "Ano da receita deve ser entre 1970 e " + anoAtual + ".", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            LocalDate data = LocalDate.of(ano, mes, dia);
+
+            // --- CATEGORIA ---
             String selecionado = (String) JCbCategoriaReceita.getSelectedItem();
+            if (selecionado == null) {
+                JOptionPane.showMessageDialog(this, "Selecione uma categoria.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             CategoriaReceita categoria = parseCategoria(selecionado);
 
+            // --- SALVA ---
             Receita receita = new Receita(valor, data, categoria);
             controle.adicionarLancamento(receita);
+            telaPrincipal.salvarSePossivel();
+            
             JOptionPane.showMessageDialog(this, "Receita cadastrada com sucesso!");
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar receita: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar receita: " + ex.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBtnConfirmarReceitaActionPerformed
 
@@ -208,7 +314,10 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jFtxtDataReceitaActionPerformed
 
-    
+    private void JFtxtValorReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFtxtValorReceitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFtxtValorReceitaActionPerformed
+
     private CategoriaReceita parseCategoria(String selecionado) {
         switch (selecionado) {
             case "Salario":
@@ -227,8 +336,8 @@ public class TelaCadastroReceita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnConfirmarReceita;
     private javax.swing.JComboBox<String> JCbCategoriaReceita;
+    private javax.swing.JFormattedTextField JFtxtValorReceita;
     private javax.swing.JLabel JlblIncluirReceita;
-    private javax.swing.JTextField JtxtValorReceita;
     private javax.swing.JButton jBtnReceitaVoltar;
     private javax.swing.JFormattedTextField jFtxtDataReceita;
     private javax.swing.JLabel labelCategoriaReceita;

@@ -1,5 +1,10 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -108,5 +113,46 @@ public class ControleFinanceiro {
         }
 
         return extrato;
+    }
+    
+     // -------- CSV --------
+
+    public void salvarCSV(String caminho) {
+        try (PrintWriter out = new PrintWriter(new FileWriter(caminho))) {
+            for (Lancamento l : lancamentos) {
+                if (l.isReceita()) {
+                    Receita r = (Receita) l;
+                    out.println("RECEITA;" + r.toCSV());
+                } else {
+                    Despesa d = (Despesa) l;
+                    out.println("DESPESA;" + d.toCSV());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar CSV: " + e.getMessage());
+        }
+    }
+
+    public void carregarCSV(String caminho) {
+        lancamentos.clear(); // limpa antes de carregar
+
+        try (BufferedReader in = new BufferedReader(new FileReader(caminho))) {
+            String linha;
+            while ((linha = in.readLine()) != null) {
+                String[] partes = linha.split(";", 2);
+                String tipo = partes[0];
+                String dados = partes[1];
+
+                if (tipo.equals("RECEITA")) {
+                    Receita r = Receita.fromCSV(dados);
+                    lancamentos.add(r);
+                } else if (tipo.equals("DESPESA")) {
+                    Despesa d = Despesa.fromCSV(dados);
+                    lancamentos.add(d);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar CSV: " + e.getMessage());
+        }
     }
 }

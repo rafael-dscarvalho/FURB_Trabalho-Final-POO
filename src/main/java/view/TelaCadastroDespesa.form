@@ -62,24 +62,24 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="JlblCategoriaDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="JlblDataDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="JlblValorDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="JCbCategoriaDespesa" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="jFtxtDataDespesa" alignment="0" max="32767" attributes="0"/>
-                      <Component id="JTxtValorDespesa" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Component id="JBtnConfirmarDespesa" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jBtnDespesaVoltar" min="-2" pref="90" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="JlblCategoriaDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblDataDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JlblValorDespesa" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="JCbCategoriaDespesa" alignment="0" pref="128" max="32767" attributes="0"/>
+                      <Component id="jFtxtDataDespesa" alignment="0" max="32767" attributes="0"/>
+                      <Component id="JFTxtValorDespesa" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,7 +97,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="JlblValorDespesa" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="JTxtValorDespesa" min="-2" max="-2" attributes="0"/>
+                  <Component id="JFTxtValorDespesa" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JBtnConfirmarDespesa" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -150,8 +150,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFtxtDataDespesaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="JTxtValorDespesa">
-        </Component>
         <Component class="javax.swing.JButton" name="JBtnConfirmarDespesa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
@@ -167,6 +165,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnDespesaVoltarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="JFTxtValorDespesa">
         </Component>
       </SubComponents>
     </Container>
