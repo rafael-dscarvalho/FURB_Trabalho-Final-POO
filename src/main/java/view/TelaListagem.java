@@ -1,8 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
+
+import java.awt.Dimension;
+import java.io.File;
+import java.util.List;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import model.ControleFinanceiro;
+import model.Lancamento;
 
 /**
  *
@@ -10,11 +16,15 @@ package view;
  */
 public class TelaListagem extends javax.swing.JFrame {
 
+    private ControleFinanceiro controle;
+
     /**
      * Creates new form TelaListagem
      */
-    public TelaListagem() {
+    public TelaListagem(ControleFinanceiro controle) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.controle = controle;
     }
 
     /**
@@ -30,16 +40,47 @@ public class TelaListagem extends javax.swing.JFrame {
         JBtnListarReceitas = new javax.swing.JButton();
         JBtnListarDespesas = new javax.swing.JButton();
         JBtnListagemCompleta = new javax.swing.JButton();
+        jBtnListagemVoltar = new javax.swing.JButton();
+        JSalvarCSV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JLblListagem.setText("LISTAGEM");
 
         JBtnListarReceitas.setText("Listar Receitas");
+        JBtnListarReceitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnListarReceitasActionPerformed(evt);
+            }
+        });
 
         JBtnListarDespesas.setText("Listar Despesas");
+        JBtnListarDespesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnListarDespesasActionPerformed(evt);
+            }
+        });
 
         JBtnListagemCompleta.setText("Listagem Completa");
+        JBtnListagemCompleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnListagemCompletaActionPerformed(evt);
+            }
+        });
+
+        jBtnListagemVoltar.setText("Voltar");
+        jBtnListagemVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnListagemVoltarActionPerformed(evt);
+            }
+        });
+
+        JSalvarCSV.setText("Salvar");
+        JSalvarCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JSalvarCSVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,74 +89,128 @@ public class TelaListagem extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(JBtnListarReceitas)
-                        .addGap(113, 113, 113)
-                        .addComponent(JBtnListarDespesas))
+                        .addGap(139, 139, 139)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBtnListarReceitas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(JLblListagem))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(JBtnListarDespesas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBtnListagemCompleta, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(11, 11, 11)
+                                    .addComponent(jBtnListagemVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(JLblListagem))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(JBtnListagemCompleta)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                        .addGap(164, 164, 164)
+                        .addComponent(JSalvarCSV)))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(JLblListagem)
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBtnListarReceitas)
-                    .addComponent(JBtnListarDespesas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
+                .addComponent(JBtnListarReceitas)
+                .addGap(18, 18, 18)
+                .addComponent(JBtnListarDespesas)
+                .addGap(12, 12, 12)
                 .addComponent(JBtnListagemCompleta)
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JSalvarCSV)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jBtnListagemVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtnListagemVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListagemVoltarActionPerformed
+        TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
+        telaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnListagemVoltarActionPerformed
+
+    private void JBtnListarDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListarDespesasActionPerformed
+                                               
+        List<Lancamento> despesas = controle.listarDespesas();
+
+        JTextArea area = new JTextArea();
+        area.setEditable(false);
+        for (Lancamento d : despesas) {
+            area.append(d.toString() + "\n");
+        }
+
+        JScrollPane scroll = new JScrollPane(area);
+        scroll.setPreferredSize(new Dimension(400, 300));
+
+        JOptionPane.showMessageDialog(this, scroll, "Despesas", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_JBtnListarDespesasActionPerformed
+
+    private void JBtnListarReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListarReceitasActionPerformed
+       
+        List<Lancamento> receitas = controle.listarReceitas();
+
+        JTextArea area = new JTextArea();
+        area.setEditable(false);
+        for (Lancamento r : receitas) {
+            area.append(r.toString() + "\n");
+        }
+
+        JScrollPane scroll = new JScrollPane(area);
+        scroll.setPreferredSize(new Dimension(400, 300));
+
+        JOptionPane.showMessageDialog(this, scroll, "Receitas", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_JBtnListarReceitasActionPerformed
+
+    private void JBtnListagemCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListagemCompletaActionPerformed
+        
+        List<String> lancamentoCompleto = controle.listarLancamentosOrdenados();
+
+        JTextArea area = new JTextArea();
+        area.setEditable(false);
+        for (String lc : lancamentoCompleto) {
+            area.append(lc.toString() + "\n");
+        }
+
+        JScrollPane scroll = new JScrollPane(area);
+        scroll.setPreferredSize(new Dimension(500, 300));
+
+        JOptionPane.showMessageDialog(this, scroll, "Receitas", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_JBtnListagemCompletaActionPerformed
+
+    private void JSalvarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSalvarCSVActionPerformed
+        // --- JFILECHOOSER PARA SALVAR CSV ---
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Escolha onde salvar o arquivo CSV");
+            fileChooser.setSelectedFile(new File("dados.csv"));
+
+            int userSelection = fileChooser.showSaveDialog(this);
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File arquivoParaSalvar = fileChooser.getSelectedFile();
+
+                // Salva no arquivo escolhido pelo usuário
+                controle.salvarCSV(arquivoParaSalvar.getAbsolutePath());
+
+                JOptionPane.showMessageDialog(this, "Despesa cadastrada e dados salvos com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Despesa cadastrada, mas arquivo CSV não foi salvo.");
+            }
+    }//GEN-LAST:event_JSalvarCSVActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaListagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaListagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaListagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaListagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaListagem().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnListagemCompleta;
     private javax.swing.JButton JBtnListarDespesas;
     private javax.swing.JButton JBtnListarReceitas;
     private javax.swing.JLabel JLblListagem;
+    private javax.swing.JButton JSalvarCSV;
+    private javax.swing.JButton jBtnListagemVoltar;
     // End of variables declaration//GEN-END:variables
 }

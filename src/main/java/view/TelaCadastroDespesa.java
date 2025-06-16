@@ -1,8 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
+
+import java.io.File;
+import java.text.NumberFormat;
+import javax.swing.text.MaskFormatter;
+import javax.swing.text.DefaultFormatterFactory;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.Locale;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
+import model.CategoriaDespesa;
+import model.CategoriaReceita;
+import model.ControleFinanceiro;
+import model.Despesa;
+import model.Receita;
 
 /**
  *
@@ -10,11 +23,41 @@ package view;
  */
 public class TelaCadastroDespesa extends javax.swing.JFrame {
 
+    private ControleFinanceiro controle;
+
     /**
      * Creates new form TelaCadastroDespesa
      */
-    public TelaCadastroDespesa() {
+    public TelaCadastroDespesa(ControleFinanceiro controle) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.controle = controle;
+
+        try {
+            MaskFormatter mf = new MaskFormatter("##/##/####");
+            mf.setPlaceholderCharacter('_');
+            jFtxtDataDespesa.setFormatterFactory(
+                    new DefaultFormatterFactory(mf)
+            );
+
+            JFTxtValorDespesa.setValue(0.00);
+
+            NumberFormat format = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            format.setMinimumFractionDigits(2);
+            format.setMaximumFractionDigits(2);
+            format.setGroupingUsed(true); // ativa o uso de milhar (ponto)
+
+            NumberFormatter formatter = new NumberFormatter(format);
+            formatter.setValueClass(Double.class);
+            formatter.setMinimum(0.0);
+            formatter.setAllowsInvalid(false); // não deixa digitar letras ou coisas erradas
+            formatter.setCommitsOnValidEdit(true); // aplica valor quando válido
+
+            JFTxtValorDespesa.setFormatterFactory(new DefaultFormatterFactory(formatter));
+
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -31,9 +74,10 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         JLblDataDespesa = new javax.swing.JLabel();
         JLblCategoriaDespesa = new javax.swing.JLabel();
         JBtnConfirmarDespesa = new javax.swing.JButton();
-        JTxtValorDespesa = new javax.swing.JTextField();
-        JTxtDataDespesa = new javax.swing.JTextField();
         JCbCategoriaDespesa = new javax.swing.JComboBox<>();
+        jBtnDespesaVoltar = new javax.swing.JButton();
+        jFtxtDataDespesa = new javax.swing.JFormattedTextField();
+        JFTxtValorDespesa = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,11 +90,30 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         JLblCategoriaDespesa.setText("Categoria");
 
         JBtnConfirmarDespesa.setText("Confirmar");
+        JBtnConfirmarDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnConfirmarDespesaActionPerformed(evt);
+            }
+        });
 
         JCbCategoriaDespesa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentacao", "Transporte", "Residencia", "Saude", "Educacao", "Entretenimento", "Outras despesas" }));
         JCbCategoriaDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCbCategoriaDespesaActionPerformed(evt);
+            }
+        });
+
+        jBtnDespesaVoltar.setText("Voltar");
+        jBtnDespesaVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDespesaVoltarActionPerformed(evt);
+            }
+        });
+
+        jFtxtDataDespesa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jFtxtDataDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFtxtDataDespesaActionPerformed(evt);
             }
         });
 
@@ -64,46 +127,54 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
                         .addGap(184, 184, 184)
                         .addComponent(JLblIncluirDespesa))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(33, 33, 33))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(JLblValorDespesa)
-                                        .addGap(119, 119, 119)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JLblDataDespesa)
-                                    .addComponent(JTxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLblCategoriaDespesa)
-                            .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addGap(103, 103, 103)
+                        .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JLblValorDespesa)
+                        .addGap(119, 119, 119))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JFTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLblDataDespesa)
+                    .addComponent(jFtxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLblCategoriaDespesa)
+                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(JLblIncluirDespesa)
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLblValorDespesa)
-                    .addComponent(JLblDataDespesa)
-                    .addComponent(JLblCategoriaDespesa))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JLblValorDespesa)
+                            .addComponent(JLblDataDespesa))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFtxtDataDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JFTxtValorDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JBtnConfirmarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnDespesaVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLblCategoriaDespesa)
+                        .addGap(7, 7, 7)
+                        .addComponent(JCbCategoriaDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -113,49 +184,171 @@ public class TelaCadastroDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JCbCategoriaDespesaActionPerformed
 
+    private void jBtnDespesaVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDespesaVoltarActionPerformed
+        TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
+        telaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBtnDespesaVoltarActionPerformed
+
+    private void jFtxtDataDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFtxtDataDespesaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFtxtDataDespesaActionPerformed
+
+    private boolean dataValida(int dia, int mes, int ano) {
+        if (mes < 1 || mes > 12) {
+            return false;
+        }
+        if (dia < 1) {
+            return false;
+        }
+
+        int[] diasNoMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int maxDia = diasNoMes[mes - 1];
+
+        // fevereiro e ano bissexto
+        if (mes == 2 && isAnoBissexto(ano)) {
+            maxDia = 29;
+        }
+
+        if (dia > maxDia) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isAnoBissexto(int ano) {
+        return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+    }
+
+    private void JBtnConfirmarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConfirmarDespesaActionPerformed
+        try {
+            // --- VALOR ---
+            String valorStr = JFTxtValorDespesa.getText().trim();
+            if (valorStr.isEmpty() || valorStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha o valor da despesa corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            NumberFormat nf = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
+            Number parsed = nf.parse(valorStr);
+            double valor = parsed.doubleValue();
+
+            if (valor <= 0) {
+                JOptionPane.showMessageDialog(this, "Valor da despesa deve ser maior que zero.", "DESPESA NÃO CADASTRADA", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // --- DATA ---
+            String dataStr = jFtxtDataDespesa.getText().trim();
+            if (dataStr.isEmpty() || dataStr.contains("_")) {
+                JOptionPane.showMessageDialog(this, "Preencha a data corretamente (dd/MM/yyyy).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String[] partes = dataStr.split("/");
+            if (partes.length != 3) {
+                JOptionPane.showMessageDialog(this, "Data inválida. Use o formato dd/MM/yyyy.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int dia, mes, ano;
+            try {
+                dia = Integer.parseInt(partes[0]);
+                mes = Integer.parseInt(partes[1]);
+                ano = Integer.parseInt(partes[2]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Data contém valores não numéricos.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validação manual da data, incluindo ano bissexto
+            if (!dataValida(dia, mes, ano)) {
+                JOptionPane.showMessageDialog(this, "Data inválida ou impossível (verifique ano bissexto, mês e dia).", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int anoAtual = Year.now().getValue();
+            if (ano < 1970 || ano > anoAtual) {
+                JOptionPane.showMessageDialog(this, "Ano da despesa deve ser entre 1970 e " + anoAtual + ".", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            LocalDate data = LocalDate.of(ano, mes, dia);
+
+            // --- CATEGORIA ---
+            String selecionado = (String) JCbCategoriaDespesa.getSelectedItem();
+            if (selecionado == null) {
+                JOptionPane.showMessageDialog(this, "Selecione uma categoria.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            CategoriaDespesa categoria = parseCategoria(selecionado);
+
+            // --- ADICIONA ---
+            Despesa despesa = new Despesa(valor, data, categoria);
+            controle.adicionarLancamento(despesa);
+            JOptionPane.showMessageDialog(this, "Receita cadastrada com sucesso!");
+            
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar despesa: " + ex.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JBtnConfirmarDespesaActionPerformed
+
+    private void JBtnCarregarCSVActionPerformed(java.awt.event.ActionEvent evt) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha o arquivo CSV para carregar");
+
+        int userSelection = fileChooser.showOpenDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+
+            try {
+                controle.carregarCSV(arquivoSelecionado.getAbsolutePath());
+                JOptionPane.showMessageDialog(this, "Arquivo carregado com sucesso!");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Erro ao carregar CSV: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Operação de carregamento cancelada.");
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private CategoriaDespesa parseCategoria(String selecionado) {
+        switch (selecionado) {
+            case "Alimentacao":
+                return CategoriaDespesa.ALIMENTACAO;
+            case "Transporte":
+                return CategoriaDespesa.TRANSPORTE;
+            case "Residencia":
+                return CategoriaDespesa.RESIDENCIA;
+            case "Saude":
+                return CategoriaDespesa.SAUDE;
+            case "Educacao":
+                return CategoriaDespesa.EDUCACAO;
+            case "Entretenimento":
+                return CategoriaDespesa.ENTRETENIMENTO;
+            case "Outras despesas":
+                return CategoriaDespesa.OUTRAS;
+            default:
+                throw new IllegalArgumentException("Categoria desconhecida: " + selecionado);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCadastroDespesa().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBtnConfirmarDespesa;
     private javax.swing.JComboBox<String> JCbCategoriaDespesa;
+    private javax.swing.JFormattedTextField JFTxtValorDespesa;
     private javax.swing.JLabel JLblCategoriaDespesa;
     private javax.swing.JLabel JLblDataDespesa;
     private javax.swing.JLabel JLblIncluirDespesa;
     private javax.swing.JLabel JLblValorDespesa;
-    private javax.swing.JTextField JTxtDataDespesa;
-    private javax.swing.JTextField JTxtValorDespesa;
+    private javax.swing.JButton jBtnDespesaVoltar;
+    private javax.swing.JFormattedTextField jFtxtDataDespesa;
     // End of variables declaration//GEN-END:variables
 }

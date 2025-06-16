@@ -76,21 +76,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Incluir Despesa"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBtnAddDespesaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JbtnAddReceita">
       <Properties>
         <Property name="text" type="java.lang.String" value="Incluir Receita"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbtnAddReceitaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBtnConsultarSaldo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Saldo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBtnConsultarSaldoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBtnListarLancamentos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listar Lan&#xe7;amentos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBtnListarLancamentosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

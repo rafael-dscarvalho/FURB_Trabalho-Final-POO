@@ -1,3 +1,7 @@
+package model;
+/**
+ * Enumeração que representa as categorias possíveis de despesas no sistema.
+ */
 public enum CategoriaDespesa {
     ALIMENTACAO,
     TRANSPORTE,
@@ -5,5 +9,5 @@ public enum CategoriaDespesa {
     SAUDE,
     EDUCACAO,
     ENTRETENIMENTO,
-    OUTRAS;
+    OUTRAS
 }
