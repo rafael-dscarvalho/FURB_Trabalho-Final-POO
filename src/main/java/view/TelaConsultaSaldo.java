@@ -10,13 +10,15 @@ import model.ControleFinanceiro;
 public class TelaConsultaSaldo extends javax.swing.JFrame {
 
     private ControleFinanceiro controle;
+    private TelaPrincipal telaPrincipal;
     /**
      * Creates new form TelaConsultaSaldo
      */
-    public TelaConsultaSaldo(ControleFinanceiro controle) {
+    public TelaConsultaSaldo(ControleFinanceiro controle, TelaPrincipal telaPrincipal) {
         initComponents();
         setLocationRelativeTo(null);
         this.controle = controle;
+        this.telaPrincipal = telaPrincipal;
     }
 
     /**
@@ -112,9 +114,9 @@ public class TelaConsultaSaldo extends javax.swing.JFrame {
     }//GEN-LAST:event_JBtnConsultarSaldoActionPerformed
 
     private void jBtnSaldoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaldoVoltarActionPerformed
-        TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
-        telaPrincipal.setVisible(true);
         this.setVisible(false);
+        this.telaPrincipal.setVisible(true);
+        this.telaPrincipal.disporDados();
     }//GEN-LAST:event_jBtnSaldoVoltarActionPerformed
 
     private void JBtnConsultarSaldoGeral1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConsultarSaldoGeral1ActionPerformed

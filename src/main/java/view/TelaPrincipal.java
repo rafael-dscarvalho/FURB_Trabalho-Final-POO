@@ -459,13 +459,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_JBtnAddDespesaActionPerformed
 
     private void JBtnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnConsultarSaldoActionPerformed
-        TelaConsultaSaldo telaSaldo = new TelaConsultaSaldo(controle);
+        TelaConsultaSaldo telaSaldo = new TelaConsultaSaldo(controle, this);
         telaSaldo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_JBtnConsultarSaldoActionPerformed
 
     private void JBtnListarLancamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListarLancamentosActionPerformed
-        TelaListagem telaListagem = new TelaListagem(controle);
+        TelaListagem telaListagem = new TelaListagem(controle, this);
         telaListagem.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_JBtnListarLancamentosActionPerformed

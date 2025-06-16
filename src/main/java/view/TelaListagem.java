@@ -15,14 +15,15 @@ import model.Lancamento;
 public class TelaListagem extends javax.swing.JFrame {
 
     private ControleFinanceiro controle;
-
+    private TelaPrincipal telaPrincipal;
     /**
      * Creates new form TelaListagem
      */
-    public TelaListagem(ControleFinanceiro controle) {
+    public TelaListagem(ControleFinanceiro controle, TelaPrincipal telaPrincipal) {
         initComponents();
         setLocationRelativeTo(null);
         this.controle = controle;
+        this.telaPrincipal = telaPrincipal;
     }
 
     /**
@@ -124,9 +125,9 @@ public class TelaListagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnListagemVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListagemVoltarActionPerformed
-        TelaPrincipal telaPrincipal = new TelaPrincipal(controle);
-        telaPrincipal.setVisible(true);
         this.setVisible(false);
+        telaPrincipal.setVisible(true);
+        telaPrincipal.disporDados();
     }//GEN-LAST:event_jBtnListagemVoltarActionPerformed
 
     private void JBtnListarDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnListarDespesasActionPerformed
